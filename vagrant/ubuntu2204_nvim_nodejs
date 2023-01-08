@@ -1,0 +1,59 @@
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "bento/ubuntu-22.04"
+  config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "ubuntu2204_base2"
+    vb.gui = false
+    vb.cpus = "4"
+    vb.memory = "8192"
+  end
+  config.vm.synced_folder "/Vagrant/workspace", "/home/vagrant/local_workspace/",create:"true"
+  config.ssh.private_key_path = "c:/Users/hida1/.vagrant.d/insecure_private_key"
+  config.ssh.insert_key = false
+  if Object.const_defined? 'VagrantVbguest'
+    config.vbguest.auto_update = false
+    config.vbguest.no_remote = true
+  end
+  config.ssh.password = "vagrant"
+    config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    # install git
+    sudo  apt-get update
+    sudo apt -y install git
+    git config --global user.name "algo1970"
+    git config --global user.email "iwant2user@gmail.com"
+    
+    # install ranger
+    sudo apt -y install ranger
+    ranger --copy-config=all
+    sudo apt -y install highlight lynx elinks poppler-utils mediainfo
+    sudo apt -y install w3m-img
+    sed -i '88 s/$EDITOR/nvim/g' .config/ranger/rifle.conf
+    sed -i '37 s/false/true/g' .config/ranger/rc.conf
+    
+    # install nvim
+    sudo apt-get -y install software-properties-common
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt-get update
+    sudo apt-get -y install neovim
+    sudo apt-get -y install python3-neovim
+    sudo apt-get -y install python3-dev python3-pip
+    
+    # install nodejs
+    curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+    sudo apt install -y nodejs
+    
+    # nvim setting
+    git clone https://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@github.com/Algo1970/nvim_ubuntu2204.git
+    mkdir -p .config/nvim
+    cp ~/nvim_ubuntu2204/config_files/init.vim ~/.config/nvim
+    sudo apt -y install curl
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    nvim +'PlugInstall --sync' +qa
+    
+    # sudo npm install -g neovim
+    # let g:loaded_node_provider = 0
+    
+  SHELL
+end
