@@ -43,6 +43,12 @@ require("packer").startup(function()
   use 'vim-airline/vim-airline-themes'
   use 'tpope/vim-fugitive'
   use 'airblade/vim-gitgutter'
+  --use {'phaazon/hop.nvim', 
+  --  branch = 'v2', 
+  --  config = function()
+  --      require 'hop'.setup = { keys = 'etovxqpdygfblzhckisuran'}
+  --  end
+  --  }
   -- use 'cocopon/iceberg.vim'
   use 'sainnhe/sonokai'
   -- use 'nvim-treesitter/nvim-treesitter'
@@ -97,17 +103,6 @@ vim.api.nvim_set_keymap('n', '<leader>GD', ':<C-u>vert Gdiffsplit !~1', {noremap
 
 
 
-require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
-})
-
-
 local cmp = require("cmp")
 cmp.setup({
   snippet = {
@@ -147,6 +142,43 @@ cmp.setup.cmdline(":", {
     { name = "cmdline" },
   },
 })
+
+
+
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+-- require("mason-lspconfig").setup()
+local nvim_lsp = require('lspconfig')
+local mason_lspconfig = require('mason-lspconfig')
+mason_lspconfig.setup_handlers({
+  function(server_name)
+    local opts = {}
+
+    if server_name == "sumneko_lua" then
+        opts.settings = {
+            Lua = {
+                diagnostics = { globals = { 'vim' } },
+            }
+        }
+    end
+
+    nvim_lsp[server_name].setup(opts)
+  end
+})
+
+
+
+
+
+
+
 
 
 -- colorscheme -----------------------------------------------------------------
@@ -196,11 +228,21 @@ require('vfiler/config').setup {
 }
 -- require('vfiler').start()
 
-
-
-
-
-
+-- place this in one of your configuration file(s)
+--local hop = require('hop')
+--local directions = require('hop.hint').HintDirection
+--vim.keymap.set('', 'f', function()
+--  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+--end, {remap=true})
+--vim.keymap.set('', 'F', function()
+--  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+--end, {remap=true})
+--vim.keymap.set('', 't', function()
+--  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+--end, {remap=true})
+--vim.keymap.set('', 'T', function()
+--  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+--end, {remap=true})
 
 
 
