@@ -1,0 +1,206 @@
+-- require('base')
+-- require('hilights')
+-- require('maps')
+
+vim.opt.clipboard = "unnamedplus"
+vim.opt.whichwrap = "b,s,[,],<,>"
+vim.opt.backspace = "indent,eol,start"
+vim.opt.ambiwidth = "single"
+vim.opt.wildmenu = true
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 2
+vim.opt.showcmd = true
+vim.opt.hlsearch = true
+vim.opt.hidden = true
+vim.opt.backup = true
+vim.opt.backupdir = os.getenv("HOME") .. '/.vim/backup'
+vim.opt.winblend = 20
+vim.opt.pumblend = 20
+vim.opt.termguicolors = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.number = true
+vim.opt.wrap = false
+vim.opt.nrformats = "bin,hex"
+vim.opt.swapfile = false
+vim.opt.formatoptions:remove('t')
+vim.opt.formatoptions:append('mM')
+
+
+
+
+
+require("packer").startup(function()
+  use 'wbthomason/packer.nvim'
+  use 'neovim/nvim-lspconfig'
+  -- use 'williamboman/nvim-lsp-installer'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+  use 'tpope/vim-fugitive'
+  use 'airblade/vim-gitgutter'
+  -- use 'cocopon/iceberg.vim'
+  use 'sainnhe/sonokai'
+  -- use 'nvim-treesitter/nvim-treesitter'
+  -- use 'nvim-treesitter/playground'
+  use 'obaland/vfiler.vim'
+  use 'obaland/vfiler-fzf'
+  use 'ibhagwan/fzf-lua'
+  -- use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons'}}
+  -- nvim-cmp
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/vim-vsnip"
+  -- use "SirVer/ultisnipq"
+  -- use "honza/vim-snippets"
+end)
+
+vim.g.mapleader = " "
+-- vim.api.nvim_set_keymap('n', '<leader><leader>', ':<C-u>cd %:h<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>w', ':<C-u>w<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>q', ':<C-u>q<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-l>', ':<C-u>bnext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-h>', ':<C-u>bprevious<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true})
+vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true})
+vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-W>+', ':<C-u>resize +5<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-W>-', ':<C-u>resize -5<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-W>>', ':<C-u>vertical resize +10<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-W><', ':<C-u>vertical resize -10<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>j', '<CMD>wincmd j<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>k', '<CMD>wincmd k<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>h', '<CMD>wincmd h<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>l', '<CMD>wincmd l<CR>', {silent=true})
+-- 'ibhagwan/fzf-lua' ----------------------------------------------------------
+opt = { noremap = true, silent = true }
+vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>lua require('fzf-lua').files()<CR>", opt)
+vim.api.nvim_set_keymap('n', '<leader>g', "<cmd>lua require('fzf-lua').git_status()<CR>", opt)
+vim.api.nvim_set_keymap('n', '<leader>p', "<cmd>lua require('fzf-lua').live_grep()<CR>", opt)
+vim.api.nvim_set_keymap('n', '<leader>h', "<cmd>lua require('fzf-lua').oldfiles()<CR>", opt)
+vim.api.nvim_set_keymap('n', '<leader>b', "<cmd>lua require('fzf-lua').buffers()<CR>", opt)
+-- 'tpope/vim-fugitive' --------------------------------------------------------
+vim.api.nvim_set_keymap('n', '<leader>GG', ':<C-u>Git<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>GC', ':<C-u>Git commit<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>GP', ':<C-u>Git push<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>GL', ':<C-u>Git log --oneline<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>GD', ':<C-u>vert Gdiffsplit !~1', {noremap = true})
+
+
+
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    -- { name = "vsnip" },
+    { name = "buffer" },
+    { name = "path" },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-l>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm { select = true },
+  }),
+  experimental = {
+    ghost_text = true,
+  },
+})
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "path" },
+    { name = "cmdline" },
+  },
+})
+
+
+-- colorscheme -----------------------------------------------------------------
+vim.cmd 'autocmd ColorScheme * highlight Normal ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight NonText ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight LineNr ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight Folded ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
+--vim.cmd 'colorscheme iceberg'
+vim.cmd 'colorscheme sonokai'
+
+-- 'vim-airline/vim-airline' ---------------------------------------------------
+vim.cmd 'let g:airline_symbols_ascii = 1'
+vim.cmd 'let g:airline#extensions#tabline#enabled = 1'
+vim.cmd 'let g:airline#extensions#whitespace#mixed_indent_algo = 1'
+
+-- 'vim-airline/vim-airline-themes' --------------------------------------------
+--vim.cmd 'let g:airline_theme = "papercolor"'
+vim.cmd 'let g:airline_theme = "murmur"'
+
+-- 'airblade/vim-gitgutter' ----------------------------------------------------
+vim.cmd 'let g:gitgutter_sign_added = "+"'
+vim.cmd 'let g:gitgutter_sign_modified = "^"'
+vim.cmd 'let g:gitgutter_sign_removed = "-"'
+vim.cmd 'highlight GitGutterAdd    guifg=#009900 ctermfg=2'
+vim.cmd 'highlight GitGutterChange guifg=#bbbb00 ctermfg=3'
+vim.cmd 'highlight GitGutterDelete guifg=#ff2222 ctermfg=1'
+vim.cmd 'highlight GitGutterAddLine          ctermbg=2'
+vim.cmd 'highlight GitGutterChangeLine       ctermbg=3'
+vim.cmd 'highlight GitGutterDeleteLine       ctermbg=1'
+
+-- 'junegunn/fzf.vim' ----------------------------------------------------------
+vim.cmd "let g:fzf_preview_window = ['right:70%', 'ctrl-/']"
+
+
+-- 'ibhagwan/fzf-lua' ----------------------------------------------------------
+require('vfiler/config').setup {
+  options = {
+    auto_cd = true,
+    auto_resize = true,
+    keep = true,
+    layout = 'left',
+    name = 'explorer',
+    width = 30,
+    columns = 'indent,icon,name',
+  },
+}
+-- require('vfiler').start()
+
+
+
+
+
+
+
+
+
