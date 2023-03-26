@@ -25,3 +25,10 @@ export PATH=$PATH:$HOME/nvim-linux64/bin
 - 
 ref :nvim-lsp-installerからmason.nvimへ移行する https://zenn.dev/kawarimidoll/articles/367b78f7740e84
 ref :Neovimのすゝめ – LSPをセットアップ（Builtin LSP編）  https://wonwon-eater.com/nvim-susume-builtin-lsp/
+
+# install cargo tree-sitter-clica
+
+```
+sudo apt install -y cargo
+cargo install tree-sitter-cli
+```
