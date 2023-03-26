@@ -30,5 +30,6 @@ ref :Neovimのすゝめ – LSPをセットアップ（Builtin LSP編）  https:
 
 ```
 sudo apt install -y cargo
+# export PATH=$PATH:$HOME/.cargo/bin
 cargo install tree-sitter-cli
 ```
