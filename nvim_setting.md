@@ -2,6 +2,16 @@
 
 ref : https://zenn.dev/botamotch/articles/4ef893e0d4cd40
 
+### install nvim
+
+```
+# install nvim (Neovim 0.8.3)
+wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+tar xzvf nvim-linux64.tar.gz
+
+# add .bashrc
+export PATH=$PATH:$HOME/nvim-linux64/bin
+```
 
 ### plugin manager
 
