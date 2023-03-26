@@ -33,3 +33,7 @@ sudo apt install -y cargo
 # export PATH=$PATH:$HOME/.cargo/bin
 cargo install tree-sitter-cli
 ```
+
+### wsl2 clipboard setting
+
+- https://sekisuiseien.com/computer/11775/
