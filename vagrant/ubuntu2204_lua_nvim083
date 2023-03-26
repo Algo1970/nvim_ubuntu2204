@@ -51,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # install nodejs
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     sudo apt install -y nodejs
-    # sudo npm install -g neovim
+    sudo npm install -g neovim   # package for neovim?
 
     # my_nvim setting
     git clone https://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@github.com/Algo1970/nvim_ubuntu2204.git
