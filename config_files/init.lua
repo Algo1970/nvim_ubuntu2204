@@ -51,7 +51,7 @@ require("packer").startup(function()
   --  }
   -- use 'cocopon/iceberg.vim'
   use 'sainnhe/sonokai'
-  -- use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter'
   -- use 'nvim-treesitter/playground'
   use 'obaland/vfiler.vim'
   use 'obaland/vfiler-fzf'
