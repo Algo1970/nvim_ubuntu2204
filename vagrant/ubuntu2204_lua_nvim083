@@ -38,9 +38,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # sudo apt-get -y install neovim
     
     # install nvim (Neovim 0.8.3)
-    wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-    tar xzvf nvim-linux64.tar.gz
-    export PATH=$PATH:$HOME/nvim-linux64/bin
+    # wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+    # tar xzvf nvim-linux64.tar.gz
+    # export PATH=$PATH:$HOME/nvim-linux64/bin
+    wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+    sudo apt install ./nvim-linux64.deb
     
     sudo apt-get -y install python3-neovim
     sudo apt install python3-pip
@@ -70,8 +72,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     
     # synchronization
     # nvim +'checkhealth' +qa
-    # nvim +'PackerSync' +qa
+    # nvim +'packersync' +qa
+    nvim +'PackerInstall' 
     
-        
   SHELL
 end
