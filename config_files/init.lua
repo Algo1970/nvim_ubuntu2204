@@ -29,7 +29,7 @@ vim.opt.swapfile = false
 vim.opt.formatoptions:remove('t')
 vim.opt.formatoptions:append('mM')
 
-
+vim.g.python3_host_prog = '/bin/python3'
 
 
 
