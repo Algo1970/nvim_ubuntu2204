@@ -30,9 +30,11 @@ cargo install alacritty
 
 ```
 
-- Alacritty.yaml
+- Alacritty.yaml `.config/alacritty/alacritty.yaml`
 ```
-
+font:
+  size: 13.0
+  
 ```
 
 
