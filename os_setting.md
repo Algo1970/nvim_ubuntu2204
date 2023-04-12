@@ -8,5 +8,11 @@
 - フォルダ名を英語に変更
 
 ```
+LANG=C xdg-user-dirs-gtk-update
+```
+- CapsLock -> Ctrl
 
 ```
+sudo sed -i -e "s/XKBOPTIONS=\"\"/XKBOPTIONS='ctrl:swapcaps'/g" /etc/default/keyboard 
+```
+
