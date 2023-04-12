@@ -4,6 +4,7 @@
 
 - 画面解像度　150％に変更
 - mozc　日本語表示切り替えを`Ctrl + space`
+ https://blog.kapiecii.com/posts/2020/05/10/ubuntu20-04-mozc-setting/
 - ショートカットキー変更
 - フォルダ名を英語に変更
 
