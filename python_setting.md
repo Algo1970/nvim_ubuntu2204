@@ -12,3 +12,7 @@ pip3 install pynvim
 pip3 install -U pynvim
 ```
 
+`init.lua`に追加
+```
+vim.cmd 'let g:python3_host_prog = "/usr/bin/python3"'
+```
