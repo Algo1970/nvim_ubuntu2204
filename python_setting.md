@@ -20,5 +20,5 @@ vim.cmd 'let g:python3_host_prog = "/usr/bin/python3"'
 
 ### python環境構築
 ```
-pip install pipenv
+sudo apt install pipenv
 ```
