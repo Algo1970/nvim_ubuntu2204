@@ -21,6 +21,15 @@ vim.cmd 'let g:python3_host_prog = "/usr/bin/python3"'
 ### python環境構築
 ```
 sudo apt install pipenv
-git clone git://github.com/yyuu/pyenv.git ~/.pyenv
-
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 ```
+pathの設定
+```
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+```
+
+bash_profileを適用
+
+`source ~/.bash_profile`
