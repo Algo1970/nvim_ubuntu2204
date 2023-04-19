@@ -11,6 +11,12 @@ tar xzvf nvim-linux64.tar.gz
 
 # add .bashrc
 export PATH=$PATH:$HOME/nvim-linux64/bin
+
+
+# alternative
+sudo apt install software-properties-common
+sudo apt update
+sudo apt install neovim
 ```
 
 ### plugin manager
