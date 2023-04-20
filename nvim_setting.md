@@ -1,6 +1,7 @@
 ## neovim設定 (2023.01.09)
 
 ref : https://zenn.dev/botamotch/articles/4ef893e0d4cd40
+ref : https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-package
 
 ### install nvim
 
