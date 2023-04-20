@@ -5,6 +5,16 @@ ref : https://zenn.dev/botamotch/articles/4ef893e0d4cd40
 ### install nvim
 
 ```
+# install neovim by AppImage
+./nvim.appimage --appimage-extract
+./squashfs-root/AppRun --version
+
+# Optional: exposing nvim globally.
+sudo mv squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+nvim
+
+
 # install nvim (Neovim 0.8.3)
 wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
 tar xzvf nvim-linux64.tar.gz
@@ -13,7 +23,7 @@ tar xzvf nvim-linux64.tar.gz
 export PATH=$PATH:$HOME/nvim-linux64/bin
 
 
-# alternative
+# alternative  (Neovim v0.7.2)
 sudo apt install software-properties-common
 sudo apt update
 sudo apt install neovim
