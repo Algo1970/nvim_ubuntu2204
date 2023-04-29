@@ -35,6 +35,10 @@ sudo apt install neovim
 ### plugin manager
 
 - Packerに変更
+```
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
 
 - 便利なプラグイン：https://zenn.dev/kawarimidoll/articles/8172a4c29a6653
 
