@@ -5,7 +5,12 @@ ref : https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-packa
 
 ### install nvim
 
+ref : https://linux.how2shout.com/3-ways-to-install-neovim-on-ubuntu-22-04-or-20-04/
+
 ```
+# install neovim by snap
+sudo snap install nvim --classic
+
 # install neovim by AppImage
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
