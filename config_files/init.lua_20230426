@@ -118,6 +118,7 @@ vim.api.nvim_set_keymap('n', '<leader>GD', ':<C-u>vert Gdiffsplit !~1', {noremap
 --- }}}
 
 --- {{{ plugins
+vim.cmd [[packadd packer.nvim]]
 require("packer").startup(function()
   use 'wbthomason/packer.nvim'
   use 'neovim/nvim-lspconfig'
