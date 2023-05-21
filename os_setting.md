@@ -17,6 +17,15 @@ LANG=C xdg-user-dirs-gtk-update
 sudo sed -i -e "s/XKBOPTIONS=\"\"/XKBOPTIONS='ctrl:swapcaps'/g" /etc/default/keyboard 
 ```
 
+- clipboard setting
+```
+sudo apt -y install xclip
+```
+
+vagrantでコピペは、
+https://weblabo.oscasierra.net/vagrant-vbguest-plugin-1/
+
+
 ### app setting
 
 - Alacritty
