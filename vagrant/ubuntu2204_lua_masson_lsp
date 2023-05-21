@@ -46,7 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sudo npm install -g neovim
 
     # my_nvim setting
-    git clone https://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@github.com/Algo1970/nvim_ubuntu2204.git
+    git clone https://github.com/Algo1970/nvim_ubuntu2204.git
     mkdir -p .config/nvim
     cp ~/nvim_ubuntu2204/config_files/init.lua ~/.config/nvim
 
