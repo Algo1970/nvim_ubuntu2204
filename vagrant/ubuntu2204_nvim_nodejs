@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sudo apt install -y nodejs
     
     # nvim setting
-    git clone https://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@github.com/Algo1970/nvim_ubuntu2204.git
+    git clone https://github.com/Algo1970/nvim_ubuntu2204.git
     mkdir -p .config/nvim
     cp ~/nvim_ubuntu2204/config_files/init.vim ~/.config/nvim
     sudo apt -y install curl
