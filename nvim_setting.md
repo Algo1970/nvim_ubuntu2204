@@ -12,6 +12,7 @@ ref : https://linux.how2shout.com/3-ways-to-install-neovim-on-ubuntu-22-04-or-20
 sudo snap install nvim --classic
 
 # install neovim by AppImage
+# sudo apt remove neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage
