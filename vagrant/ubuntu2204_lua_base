@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sudo apt install python3.10-venv
 
     # my_nvim setting
-    git clone https://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@github.com/Algo1970/nvim_ubuntu2204.git
+    git clone https://github.com/Algo1970/nvim_ubuntu2204.git
     mkdir -p .config/nvim
     cp ~/nvim_ubuntu2204/config_files/init.lua ~/.config/nvim
 
