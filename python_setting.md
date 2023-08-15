@@ -10,7 +10,7 @@ https://github.com/neovim/pynvim
 sudo apt install python3-pip
 pip3 install pynvim
 pip3 install -U pynvim
-sudo apt install python3.10-venv
+sudo apt install python3.10-venv   # python-lsp-severをMassonでインストールするにも必要
 ```
 
 `init.lua`に追加
