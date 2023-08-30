@@ -38,6 +38,17 @@ sudo apt update
 sudo apt install neovim
 ```
 
+### build nvim
+
+https://github.com/neovim/neovim/wiki/Building-Neovim
+```
+sudo apt-get install ninja-build gettext cmake unzip curl
+git clone https://github.com/neovim/neovim
+cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+
+```
+
 ### plugin manager
 
 - Packerに変更
