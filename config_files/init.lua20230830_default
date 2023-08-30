@@ -1,0 +1,462 @@
+
+---  base.lua 
+vim.opt.clipboard = "unnamedplus"
+vim.opt.whichwrap = "b,s,[,],<,>"
+vim.opt.backspace = "indent,eol,start"
+vim.opt.ambiwidth = "single"
+vim.opt.wildmenu = true
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 2
+vim.opt.showcmd = true
+vim.opt.hlsearch = true
+vim.opt.hidden = true
+vim.opt.backup = true
+vim.opt.backupdir = os.getenv("HOME") .. '/.vim/backup'
+vim.opt.winblend = 20
+vim.opt.pumblend = 20
+vim.opt.termguicolors = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.number = true
+vim.opt.wrap = false
+vim.opt.nrformats = "bin,hex"
+vim.opt.swapfile = false
+vim.opt.formatoptions:remove('t')
+vim.opt.formatoptions:append('mM')
+vim.opt.foldmethod = "marker"
+
+vim.cmd 'let g:python3_host_prog = "/usr/bin/python3"'
+
+--- keymaps
+-- jj -> ESC
+vim.keymap.set('i', 'jj', '<ESC>')
+
+-- R-language pip
+--vim.keymap.set('i', '<C-M>', '%>% ')
+
+-- move window
+vim.keymap.set('n', 'sj', '<C-w>j')
+vim.keymap.set('n', 'sk', '<C-w>k')
+vim.keymap.set('n', 'sl', '<C-w>l')
+vim.keymap.set('n', 'sh', '<C-w>h')
+
+vim.keymap.set('n', 'sJ', '<C-w>J')
+vim.keymap.set('n', 'sK', '<C-w>K')
+vim.keymap.set('n', 'sL', '<C-w>L')
+vim.keymap.set('n', 'sH', '<C-w>H')
+
+-- set s+sv separate window
+vim.keymap.set('n', 'ss', '<C-w>s')
+vim.keymap.set('n', 'sv', '<C-w>v')
+-- set s+nptT move tab
+vim.keymap.set('n', 'sn', 'gt')
+vim.keymap.set('n', 'sp', 'gT')
+vim.keymap.set('n', 'st', ':<C-u>tabnew<CR>')
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+
+-- filer
+vim.api.nvim_set_keymap('n', '<leader>f', ':<C-u>Ex<CR>', {noremap = true})
+
+-- vim.api.nvim_set_keymap('n', '<leader><leader>', ':<C-u>cd %:h<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>w', ':<C-u>w<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>q', ':<C-u>q<CR>', {noremap = true})
+-- vim.api.nvim_set_keymap('n', '<C-l>', ':<C-u>bnext<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<C-h>', ':<C-u>bprevious<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true})
+vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true})
+vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {silent=true})
+vim.api.nvim_set_keymap('n', '<C-W>j', ':<C-u>resize +3<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-W>k', ':<C-u>resize -3<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-W>l', ':<C-u>vertical resize +5<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<C-W>h', ':<C-u>vertical resize -5<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<ESC><ESC>', ':nohlsearch<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>j', '<CMD>wincmd j<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>k', '<CMD>wincmd k<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>h', '<CMD>wincmd h<CR>', {silent=true})
+vim.api.nvim_set_keymap('t', '<C-W>l', '<CMD>wincmd l<CR>', {silent=true})
+
+
+vim.cmd [[packadd packer.nvim]]
+require("packer").startup(function()
+  use 'wbthomason/packer.nvim'
+
+  use 'nvim-lua/plenary.nvim'
+  use 'nvim-lua/popup.nvim'
+  use 'kyazdani42/nvim-web-devicons'
+	
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  -- use 'williamboman/nvim-lsp-installer'
+
+  
+  -- use 'kosayoda/nvim-lightbulb'
+  use 'kosayoda/nvim-lightbulb' 
+  use 'rmagatti/goto-preview' 
+  use 'onsails/lspkind-nvim' 
+
+
+  -- nvim-cmp
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-cmdline"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/vim-vsnip"
+  use "dcampos/nvim-snippy"
+  use "dcampos/cmp-snippy"
+
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+  -- use {
+  --   'nvim-lualine/lualine.nvim',
+  --   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  -- }
+  use 'tpope/vim-fugitive'
+  use 'airblade/vim-gitgutter'
+
+  --use 'cocopon/iceberg.vim'
+  
+  use 'sainnhe/sonokai'
+  --use 'tomasr/molokai'
+  --use 'tanvirtin/monokai.nvim'
+  use 'nvim-treesitter/nvim-treesitter'
+  -- use 'nvim-treesitter/playground'
+  use 'obaland/vfiler.vim'
+  use 'obaland/vfiler-fzf'
+  use 'ibhagwan/fzf-lua'
+  -- use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons'}}
+  -- use "SirVer/ultisnipq"
+  -- use "honza/vim-snippets"
+  use 'mattn/emmet-vim'
+  -- use 'folke/noice.nvim'
+  use 'tpope/vim-commentary'
+  use 'hkupty/iron.nvim'
+  -- use 'easymotion/vim-easymotion'
+
+  use 'jalvesaq/Nvim-R'
+  use 'jalvesaq/cmp-nvim-r'
+
+
+  use 'tyru/open-browser.vim'
+
+end)
+
+
+--- colorscheme 
+vim.cmd 'autocmd ColorScheme * highlight Normal ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight NonText ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight LineNr ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight Folded ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
+vim.cmd 'colorscheme sonokai'
+
+
+local cmp = require('cmp')
+local snippy = require("snippy")
+local lspkind = require('lspkind')
+
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+cmp.setup({
+    enabled = function()
+        -- disable completion in comments
+        local context = require('cmp.config.context')
+        -- keep command mode completion enabled when cursor is in a comment
+        if vim.api.nvim_get_mode().mode == 'c' then
+            return true
+        else
+            return not context.in_treesitter_capture("comment") 
+                and not context.in_syntax_group("Comment")
+        end 
+    end ,
+
+    snippet = {
+        expand = function(args)
+            -- For `vsnip` user.
+            -- vim.fn["vsnip#anonymous"](args.body)
+            require('snippy').expand_snippet(args.body)
+        end,
+    },
+    
+    mapping = {
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+        }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        -- ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+        -- ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            -- elseif snippy.can_expand_or_advance() then
+            --     snippy.expand_or_advance()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            -- elseif snippy.can_jump(-1) then
+            --     snippy.previous()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+    },
+    
+    sources = cmp.config.sources(
+        {
+            { name = 'nvim_lsp' },
+            -- For vsnip users.
+            -- { name = 'vsnip' }, 
+            -- For snippy users.
+            { name = 'snippy' }
+        }, 
+        {
+            { name = 'buffer' },
+        },
+        {
+            { name = 'latex_symbols' }
+        }
+    ),
+    
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+			-- require('cmp-under-comparator').under,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		}
+	}, 
+    
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'text_symbol', 
+            maxwidth = 50
+        })
+    }
+})
+
+cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = 'buffer' }
+	}
+})
+
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
+})
+
+
+
+local nvim_lsp = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local bkmap = vim.api.nvim_buf_set_keymap
+local opts = { noremap = true, silent = true }
+
+vim.lsp.set_log_level("INFO")
+
+local lsp_keymaps = function(bufnr)
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	bkmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	bkmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	bkmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+	bkmap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+	bkmap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+	bkmap(bufnr, "n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	-- bkmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+	bkmap(bufnr, "n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+	bkmap(bufnr, "n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+end
+
+local on_attach = function(client, bufnr)
+	-- client.resolved_capabilities.document_formatting = false
+	-- if client.config.flags then
+	-- 	client.config.flags.allow_incremental_sync	 = true
+	-- end
+	lsp_keymaps(bufnr)
+end
+
+-- local caps = vim.lsp.protocol.make_client_capabilities()
+-- local capabilities = cmp_nvim_lsp.update_capabilities(caps)
+local capabilities = cmp_nvim_lsp.default_capabilities()
+
+nvim_lsp["pyright"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+nvim_lsp["pylsp"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+local mason = require('mason')
+local mason_lsp = require("mason-lspconfig")
+
+mason.setup()
+mason_lsp.setup({
+    ensure_installed = { 'pyright' }
+})
+
+require('goto-preview').setup({
+	default_mappings = true
+})
+
+-- require('nvim-lightbulb').setup()
+
+require('snippy').setup({
+    enable_auto = true,
+    mappings = {
+        is = {
+            ['<Tab>'] = 'expand_or_advance',
+            -- ['<S-Tab>'] = 'previous',
+            ['<C-L>'] = 'next',
+            ['<C-H>'] = 'previous',
+        },
+        nx = {
+            ['<leader>x'] = 'cut_text',
+        },
+    },
+})
+
+
+local ts = require('nvim-treesitter.configs')
+
+ensure_installed_langs = {
+	'python', 
+-- 	'latex',
+-- 	'lua',
+    'fish'
+}
+
+ts.setup {
+    -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = ensure_installed_langs,
+    -- install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false, 
+    -- List of parsers to ignore installing
+    -- ignore_install = { "javascript" }, 
+    highlight = {
+        -- false will disable the whole extension
+        enable = true,    
+        -- list of language that will be disabled          
+        disable = { "" },  
+        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+        -- Using this option may slow down your editor, and you may see some duplicate highlights.
+        -- Instead of true it can also be a list of languages
+        additional_vim_regex_highlighting = false,
+    },
+	
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn",
+			node_incremental = "grn",
+			scope_incremental = "grc",
+			node_decremental = "grm",
+		},
+	},
+  
+	indent = { enable = true },
+	
+	rainbow = {
+		enable = true,
+		-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+		max_file_lines = nil, -- Do not enable for files with more than n lines, int
+		colors = {  
+			"#458588",
+			"#d65d0e",  
+			"#689d6a", 
+			"#d79921",  
+			"#b16286", 
+			"#a89984",
+			"#cc241d",
+  
+		}, -- table of hex strings
+		-- termcolors = {} -- table of colour name strings
+	},
+
+    refactor = {
+        highlight_definitions = {
+            enable = true,
+            -- Set to false if you have an `updatetime` of ~100.
+            clear_on_cursor_move = true,
+        },
+        highlight_current_scope = {
+            enable = true
+        },
+        smart_rename = {
+            enable = true,
+            keymaps = {
+                smart_rename = 'grr'
+            }
+        },
+        navigation = {
+            enable = true,
+            keymaps = {
+                goto_definition = "gnd",
+                list_definitions = "gnD",
+                list_definitions_toc = "gO",
+                goto_next_usage = "<a-*>",
+                goto_previous_usage = "<a-#>",
+            }
+        }
+    },
+    
+    textobjects = {
+        move = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
+                ["]m"] = "@function.outer",
+                ["]]"] = "@class.outer",
+            },
+            goto_next_end = {
+                ["]M"] = "@function.outer",
+                ["]["] = "@class.outer",
+            },
+            goto_previous_start = {
+                ["[m"] = "@function.outer",
+                ["[["] = "@class.outer",
+            },
+            goto_previous_end = {
+                ["[M"] = "@function.outer",
+                ["[]"] = "@class.outer",
+            },
+        },
+    }
+}
+
+
