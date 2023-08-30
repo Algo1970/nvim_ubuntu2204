@@ -81,13 +81,7 @@ vim.api.nvim_set_keymap('t', '<C-W>k', '<CMD>wincmd k<CR>', {silent=true})
 vim.api.nvim_set_keymap('t', '<C-W>h', '<CMD>wincmd h<CR>', {silent=true})
 vim.api.nvim_set_keymap('t', '<C-W>l', '<CMD>wincmd l<CR>', {silent=true})
 
---- colorscheme 
-vim.cmd 'autocmd ColorScheme * highlight Normal ctermbg=none guibg=none'
-vim.cmd 'autocmd ColorScheme * highlight NonText ctermbg=none guibg=none'
-vim.cmd 'autocmd ColorScheme * highlight LineNr ctermbg=none guibg=none'
-vim.cmd 'autocmd ColorScheme * highlight Folded ctermbg=none guibg=none'
-vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
-vim.cmd 'colorscheme sonokai'
+
 
 vim.cmd [[packadd packer.nvim]]
 require("packer").startup(function()
@@ -154,6 +148,15 @@ require("packer").startup(function()
   use 'tyru/open-browser.vim'
 
 end)
+
+--- colorscheme  
+vim.cmd 'autocmd ColorScheme * highlight Normal ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight NonText ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight LineNr ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight Folded ctermbg=none guibg=none'
+vim.cmd 'autocmd ColorScheme * highlight EndOfBuffer ctermbg=none guibg=none'
+--- colorscheme設定が、Packer　Useの前にあるとPackerSyncが効かないので注意！！！
+vim.cmd 'colorscheme sonokai'
 
 
 -- require('impatient')
