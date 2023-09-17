@@ -1,0 +1,15 @@
+require("plugins")
+require("base")
+require("keymaps")
+require("colorscheme")
+require("airline")
+require("fzf")
+require("cmp_lsp")
+require("treesitter")
+require("iron")
+require("comment_setting")
+-- require("gotopreview")
+-- require("deepl_setting")
+require("vfiler_setting")
+
+
