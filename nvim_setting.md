@@ -77,3 +77,8 @@ cargo install tree-sitter-cli
 ### wsl2 clipboard setting
 
 - https://sekisuiseien.com/computer/11775/
+
+### Error対応
+
+- まずは`:checkhealth()`
+- ファイル形式によってエラーが出る場合、`:TSInstall 言語名`を試してみる！
