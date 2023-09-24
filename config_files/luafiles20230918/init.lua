@@ -11,5 +11,5 @@ require("comment_setting")
 -- require("gotopreview")
 -- require("deepl_setting")
 require("vfiler_setting")
-
+require("hop_setting")
 
