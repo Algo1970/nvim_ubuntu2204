@@ -55,6 +55,8 @@ require("packer").startup(function()
   use 'tyru/open-browser.vim'
   -- use 'hotoolong/translate.nvim' 
   -- use "ryicoh/deepl.vim"
+  use 'phaazon/hop.nvim'
+
 
 end)
 
