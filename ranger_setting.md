@@ -20,6 +20,7 @@ echo "default_linemode devicons" >> $HOME/.config/ranger/rc.conf
 <!--  -->
 <!--        Bookmarks are selectable when tabbing in the :cd command. -->
 
+<!-- TAG -->
 <!-- t-N         Open a tab. N has to be a number from 0 to 9. If the tab doesn't exist -->
 <!--                      yet, it will be created. -->
 <!--  -->
